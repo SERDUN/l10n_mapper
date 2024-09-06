@@ -37,8 +37,11 @@ class L10nMapperGenerator extends Generator {
         final nullable = message == null;
         final shouldGenerateExtension = l10n || locale || parseL10n;
 
+        // Dynamically determine the import path for AppLocalizations
+        final localizationPath = classElement.source.uri;
+
         // import
-        buffer.writeln("import 'app_localizations.dart';");
+        buffer.writeln("import '$localizationPath';");
         buffer.writeln("import 'package:flutter/widgets.dart';");
 
         // generate extension
